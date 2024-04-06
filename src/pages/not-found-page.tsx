@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-function NotFoundPage(): JSX.Element {
+export default function NotFoundPage(): JSX.Element {
   return (
     <>
       <h1>
@@ -10,5 +10,3 @@ function NotFoundPage(): JSX.Element {
     </>
   );
 }
-
-export default NotFoundPage;
