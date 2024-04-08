@@ -5,7 +5,7 @@ export const reviews: Review[] = [
     id: '1',
     date: '2019-05-08T14:13:56.569Z',
     user: {
-      id: '2',
+      id: 2,
       name: 'Max',
       avatar: '../../../markup/img/avatar-max.jpg',
       isPro: false
@@ -18,7 +18,7 @@ export const reviews: Review[] = [
     id: '2',
     date: '2019-05-08T14:13:56.569Z',
     user: {
-      id: '3',
+      id: 3,
       name: 'Max',
       avatar: '../../../markup/img/avatar-max.jpg',
       isPro: false
@@ -31,7 +31,7 @@ export const reviews: Review[] = [
     id: '3',
     date: '2019-05-08T14:13:56.569Z',
     user: {
-      id: '2',
+      id: 4,
       name: 'Max',
       avatar: '../../../markup/img/avatar-max.jpg',
       isPro: true
@@ -44,7 +44,7 @@ export const reviews: Review[] = [
     id: '4',
     date: '2019-05-08T14:13:56.569Z',
     user: {
-      id: '2',
+      id: 5,
       name: 'Max',
       avatar: '../../../markup/img/avatar-max.jpg',
       isPro: false

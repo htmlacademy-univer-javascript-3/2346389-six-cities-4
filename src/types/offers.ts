@@ -12,7 +12,7 @@ export type City = {
 };
 
 export type Offer = {
-  id: string;
+  id: number;
   title: string;
   description: string;
   type: string;
@@ -29,3 +29,4 @@ export type Offer = {
   images: string[];
   rating: number;
 };
+
