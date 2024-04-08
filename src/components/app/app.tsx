@@ -8,11 +8,11 @@ import OfferPage from '../../pages/offer-page';
 import NotFoundPage from '../../pages/not-found-page';
 import PrivateRoute from '../private-route/privaye-route';
 import { Offer } from '../../types/offers';
-import { Review } from '../../types/reviews';
+import { ReviewType } from '../../types/reviews';
 
 type AppPageProps = {
   offers: Offer[];
-  reviews: Review[];
+  reviews: ReviewType[];
 }
 
 export default function App({ offers, reviews }: AppPageProps): JSX.Element {

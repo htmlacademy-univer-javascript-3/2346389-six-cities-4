@@ -1,29 +1,33 @@
 import { Link } from 'react-router-dom';
 import { Offer } from '../../types/offers';
 import { getRatingStars } from '../const/util';
+import { PLACE_CARD_HEIGHT, PLACE_CARD_WIDTH } from '../const/const';
 
 type OfferCardProps = {
   offer: Offer;
   onCardMouseOver(id:number): void;
+  isMainPage: boolean;
 };
 
-export default function OfferCard({ offer: offer, onCardMouseOver }: OfferCardProps): JSX.Element {
+export default function OfferCard({ offer, onCardMouseOver, isMainPage }: OfferCardProps): JSX.Element {
   const {id, title, type, price, isPremium, isFavorite, previewImage: image, rating} = offer;
   return (
-    <article className="cities__card place-card"
+    <article className={isMainPage ? 'cities__card place-card' : 'near-places__card place-card'}
+      id ={offer.id.toString()}
       onMouseOver={(evt)=> {
         const target = evt.currentTarget as HTMLElement;
         onCardMouseOver(+target.id);
       }}
     >
-      {isPremium && (
+      {
+        isMainPage &&
         <div className="place-card__mark">
-          <span>Premium</span>
+          <span>{isPremium ? 'Premium' : ''}</span>
         </div>
-      )}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      }
+      <div className={isMainPage ? 'cities__image-wrapper place-card__image-wrapper' : 'near-places__image-wrapper place-card__image-wrapper'}>
         <a href="#">
-          <img className="place-card__image" src={image} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={image} width={PLACE_CARD_WIDTH} height={PLACE_CARD_HEIGHT} alt="Place image" />
         </a>
       </div>
       <div className="place-card__info">

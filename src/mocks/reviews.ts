@@ -1,8 +1,8 @@
-import { Review } from '../types/reviews';
+import { ReviewType } from '../types/reviews';
 
-export const reviews: Review[] = [
+export const reviews: ReviewType[] = [
   {
-    id: '1',
+    id: 1,
     date: '2019-05-08T14:13:56.569Z',
     user: {
       id: 2,
@@ -15,7 +15,7 @@ export const reviews: Review[] = [
   },
 
   {
-    id: '2',
+    id: 2,
     date: '2019-05-08T14:13:56.569Z',
     user: {
       id: 3,
@@ -28,7 +28,7 @@ export const reviews: Review[] = [
   },
 
   {
-    id: '3',
+    id: 3,
     date: '2019-05-08T14:13:56.569Z',
     user: {
       id: 4,
@@ -41,7 +41,7 @@ export const reviews: Review[] = [
   },
 
   {
-    id: '4',
+    id: 4,
     date: '2019-05-08T14:13:56.569Z',
     user: {
       id: 5,

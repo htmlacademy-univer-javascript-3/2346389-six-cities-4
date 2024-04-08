@@ -20,13 +20,13 @@ export const offers: Offer[] = [
       name: 'Amsterdam',
       location: {
         width: 52.35514938496378,
-        length: 4.85309666406198,
+        height: 4.85309666406198,
         zoom: 8
       }
     },
     location: {
       width: 52.3909553943508,
-      length: 4.673877537499948,
+      height: 4.673877537499948,
       zoom: 8
     },
     isFavorite: false,
@@ -56,13 +56,13 @@ export const offers: Offer[] = [
       name: 'Amsterdam',
       location: {
         width: 52.35514938496378,
-        length: 4.673877537499948,
+        height: 4.673877537499948,
         zoom: 8
       }
     },
     location: {
       width: 52.3609553943508,
-      length: 4.85309666406198,
+      height: 4.85309666406198,
       zoom: 8
     },
     isFavorite: false,
@@ -93,13 +93,13 @@ export const offers: Offer[] = [
       name: 'Amsterdam',
       location: {
         width: 52.35514938496378,
-        length: 4.673877537499948,
+        height: 4.673877537499948,
         zoom: 8
       }
     },
     location: {
       width: 52.3909553943508,
-      length: 4.929309666406198,
+      height: 4.929309666406198,
       zoom: 8
     },
     isFavorite: true,
@@ -130,13 +130,13 @@ export const offers: Offer[] = [
       name: 'Amsterdam',
       location: {
         width: 52.35514938496378,
-        length: 4.673877537499948,
+        height: 4.673877537499948,
         zoom: 8
       }
     },
     location: {
       width: 52.3809553943508,
-      length: 4.939309666406198,
+      height: 4.939309666406198,
       zoom: 8
     },
     isFavorite: true,

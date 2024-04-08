@@ -1,3 +1,15 @@
+export const REVIEWS_AVATAR_SIZE = 54;
+
+export const HOST_AVATAR_SIZE = 74;
+
+export const STAR_WIDTH = 37;
+
+export const STAR_HEIGHT = 33;
+
+export const PLACE_CARD_WIDTH = 260;
+
+export const PLACE_CARD_HEIGHT = 200;
+
 export enum AppRoute {
   Main = '/',
   Login = '/login',
