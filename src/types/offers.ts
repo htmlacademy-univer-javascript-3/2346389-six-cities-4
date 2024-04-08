@@ -2,7 +2,7 @@ import { User } from './reviews';
 
 export type Location = {
   width: number;
-  length: number;
+  height: number;
   zoom: number;
 };
 

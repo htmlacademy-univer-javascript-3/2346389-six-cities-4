@@ -8,6 +8,7 @@ import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../const/const';
 type MapProps = {
   offers: Offer[];
   activeOfferId: number;
+  isMainPage: boolean;
 }
 
 const defaultCustomIcon = new Icon({
@@ -23,7 +24,7 @@ const currentCustomIcon = new Icon({
 });
 
 export default function Map(props: MapProps): JSX.Element {
-  const {offers, activeOfferId} = props;
+  const {offers, activeOfferId, isMainPage} = props;
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, offers[0]);
@@ -34,7 +35,7 @@ export default function Map(props: MapProps): JSX.Element {
       offers.forEach((offer) => {
         const marker = new Marker({
           lat: offer.location.width,
-          lng: offer.location.length,
+          lng: offer.location.height,
         });
 
         marker.setIcon(
@@ -52,6 +53,6 @@ export default function Map(props: MapProps): JSX.Element {
   }, [map, offers, activeOfferId]);
 
   return (
-    <section className="cities__map map" ref={mapRef}></section>
+    <section className={isMainPage ? 'cities__map map' : 'offer__map map'} ref={mapRef}></section>
   );
 }

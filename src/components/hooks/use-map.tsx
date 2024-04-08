@@ -15,7 +15,7 @@ export default function useMap(
       const instance = new Map(mapRef.current, {
         center: {
           lat: offer.city.location.width,
-          lng: offer.city.location.length,
+          lng: offer.city.location.height,
         },
         zoom: offer.city.location.zoom
       });
