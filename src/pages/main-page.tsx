@@ -1,12 +1,15 @@
 import OffersList from '../components/lists/offer-list';
 import { Offer } from '../types/offers';
 import {Link} from 'react-router-dom';
+import Map from '../components/map/map';
+import { useState } from 'react';
 
 type MainPageProps = {
   offers: Offer[];
 }
 
 export default function MainScreen({ offers }: MainPageProps): JSX.Element {
+  const [activeOfferId, setActiveOfferId] = useState(0);
   return (
     <div className="page">
       <header className="header">
@@ -96,11 +99,11 @@ export default function MainScreen({ offers }: MainPageProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <OffersList offers={offers}/>
+                <OffersList offers={offers} setActiveOfferId={setActiveOfferId}/>
               </div>
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <Map offers={offers} activeOfferId={activeOfferId}/>
             </div>
           </div>
         </div>
