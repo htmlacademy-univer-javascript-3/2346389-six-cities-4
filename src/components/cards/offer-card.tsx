@@ -18,6 +18,10 @@ export default function OfferCard({ offer, onCardMouseOver, isMainPage }: OfferC
         const target = evt.currentTarget as HTMLElement;
         onCardMouseOver(+target.id);
       }}
+      onMouseLeave={(evt)=> {
+        const target = evt.currentTarget as HTMLElement;
+        onCardMouseOver(-target.id);
+      }}
     >
       {
         isMainPage &&
