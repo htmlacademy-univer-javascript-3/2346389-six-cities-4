@@ -1,8 +1,10 @@
 import OffersList from '../components/lists/offer-list';
 import { Offer } from '../types/offers';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Map from '../components/map/map';
 import { useState } from 'react';
+import CitiesList from '../components/cities-list/cities-list';
+import { useAppSelector } from '../components/hooks';
 
 type MainPageProps = {
   offers: Offer[];
@@ -10,14 +12,16 @@ type MainPageProps = {
 
 export default function MainScreen({ offers }: MainPageProps): JSX.Element {
   const [activeOfferId, setActiveOfferId] = useState(0);
+  const currentCity = useAppSelector((state) => state.cityName);
+
   return (
-    <div className="page">
+    <div className="page page--gray page--main">
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
               <Link className="header__logo-link header__logo-link--active" to="/">
-                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
+                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
               </Link>
             </div>
             <nav className="header__nav">
@@ -44,49 +48,20 @@ export default function MainScreen({ offers }: MainPageProps): JSX.Element {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Paris</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Cologne</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Brussels</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Hamburg</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Dusseldorf</span>
-                </a>
-              </li>
-            </ul>
+            <CitiesList currentCity={currentCity} />
           </section>
         </div>
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
+              <b className="places__found">
+                {offers.length} place{(offers.length !== 1) ? 's' : ''} to stay in {currentCity}
+              </b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
-                                    Popular
+                  Popular
                   <svg className="places__sorting-arrow" width="7" height="4">
                     <use xlinkHref="#icon-arrow-select"></use>
                   </svg>
@@ -99,11 +74,11 @@ export default function MainScreen({ offers }: MainPageProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <OffersList isMainPage offers={offers} setActiveOfferId={setActiveOfferId}/>
+                <OffersList isMainPage offers={offers} setActiveOfferId={setActiveOfferId} />
               </div>
             </section>
             <div className="cities__right-section">
-              <Map isMainPage offers={offers} activeOfferId={activeOfferId}/>
+              <Map isMainPage offers={offers} activeOfferId={activeOfferId} />
             </div>
           </div>
         </div>

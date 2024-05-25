@@ -1,5 +1,5 @@
-import {Route, BrowserRouter, Routes} from 'react-router-dom';
-import {HelmetProvider} from 'react-helmet-async';
+import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { AppRoute, AuthorizationStatus } from '../const/const';
 import MainPage from '../../pages/main-page';
 import FavoritesPage from '../../pages/favorites-page';
@@ -7,15 +7,15 @@ import LoginPage from '../../pages/login-page';
 import OfferPage from '../../pages/offer-page';
 import NotFoundPage from '../../pages/not-found-page';
 import PrivateRoute from '../private-route/privaye-route';
-import { Offer } from '../../types/offers';
 import { ReviewType } from '../../types/reviews';
+import { useAppSelector } from '../hooks';
 
 type AppPageProps = {
-  offers: Offer[];
   reviews: ReviewType[];
 }
 
-export default function App({ offers, reviews }: AppPageProps): JSX.Element {
+export default function App({ reviews }: AppPageProps): JSX.Element {
+  const offers = useAppSelector((state)=>state.offers);
   return (
     <HelmetProvider>
       <BrowserRouter>
