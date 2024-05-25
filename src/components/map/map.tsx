@@ -52,6 +52,12 @@ export default function Map(props: MapProps): JSX.Element {
     }
   }, [map, offers, activeOfferId]);
 
+  useEffect(() => {
+    if (map) {
+      map.flyTo([offers[0].city.location.width, offers[0].city.location.height], offers[0].city.location.zoom);
+    }
+  }, [map, offers]);
+
   return (
     <section className={isMainPage ? 'cities__map map' : 'offer__map map'} ref={mapRef}></section>
   );
