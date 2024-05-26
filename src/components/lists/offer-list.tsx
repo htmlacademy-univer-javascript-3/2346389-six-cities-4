@@ -3,15 +3,14 @@ import { Offer } from '../../types/offers';
 
 type OffersListProps = {
     offers: Offer[];
-    setActiveOfferId?: (id:string)=> void;
-    isMainPage: boolean;
+    isMainScreen: boolean;
 };
 
-export default function OffersList({ offers, setActiveOfferId, isMainPage }: OffersListProps) {
+export default function OffersList({ offers, isMainScreen }: OffersListProps) {
   return (
     <div className="cities__places-list places__list tabs__content">
       {offers.map((offer) =>
-        <OfferCard isMainPage={isMainPage} onCardMouseOver = {setActiveOfferId} key={offer.id} offer={offer}/>)};
+        <OfferCard isMainScreen={isMainScreen} key={offer.id} offer={offer}/>)};
     </div>
   );
 }

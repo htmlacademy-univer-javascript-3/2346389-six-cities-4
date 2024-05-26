@@ -1,13 +1,14 @@
 import Review from '../reviews/review';
-import { ReviewType } from '../../types/reviews';
+import { useAppSelector } from '../hooks';
+import { getComments } from '../../store/current-offer-data/selectors';
 
-type ReviewListProps = {
-    reviews: ReviewType[];
-}
 
-export default function ReviewsList({ reviews }: ReviewListProps): JSX.Element {
+export default function ReviewsList(): JSX.Element {
+  const reviews = useAppSelector(getComments);
+
   return (
     <ul className="reviews__list">
+      <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
       {reviews
         .slice()
         .sort((reviewA, reviewB) => {

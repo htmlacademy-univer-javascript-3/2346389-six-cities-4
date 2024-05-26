@@ -1,11 +1,10 @@
-import { Offer } from '../../types/offers';
 import FavoritesCard from '../cards/favourites-card';
+import { useAppSelector } from '../hooks';
+import { getFilteredOffers } from '../../store/offers-data/selectors';
 
-type FavoritesListProps = {
-    offers: Offer[];
-}
 
-export default function FavoritesList({offers}: FavoritesListProps): JSX.Element {
+export default function FavoritesList(): JSX.Element {
+  const offers = useAppSelector(getFilteredOffers);
   const favoriteOffers = offers.filter((offer) => offer.isFavorite === true).map((offer) => offer);
   const favoriteCities = favoriteOffers.map((offer) => offer.city.name).filter((value, index, self) => self.indexOf(value) === index);
   return (
