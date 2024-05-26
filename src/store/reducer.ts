@@ -1,14 +1,13 @@
 import {createReducer} from '@reduxjs/toolkit';
 import { CitiesName } from '../components/const/const';
-import { offers } from '../mocks/offers';
 import { initialStateType } from '../types/initial-state';
-import { offerFilter, cityPick } from './action';
-
-const START_CITY_NAME = 'Paris';
+import { offerFilter, cityPick, loadOffers, setOffersDataLoading } from './action';
 
 const initialState: initialStateType = {
+  offers: [],
   cityName: CitiesName.PARIS,
-  offers: offers.filter((offer) => offer.city.name === START_CITY_NAME),
+  offerFilter: [],
+  isOffersDataLoading: false,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -17,6 +16,12 @@ export const reducer = createReducer(initialState, (builder) => {
       state.cityName = action.payload;
     })
     .addCase(offerFilter, (state) => {
-      state.offers = offers.filter((offer)=> offer.city.name === state.cityName);
+      state.offerFilter = state.offers.filter((offer)=> offer.city.name === state.cityName);
+    })
+    .addCase(loadOffers, (state, action) => {
+      state.offers = action.payload;
+    })
+    .addCase(setOffersDataLoading, (state, action) => {
+      state.isOffersDataLoading = action.payload;
     });
 });

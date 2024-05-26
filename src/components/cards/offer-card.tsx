@@ -5,7 +5,7 @@ import { PLACE_CARD_HEIGHT, PLACE_CARD_WIDTH } from '../const/const';
 
 type OfferCardProps = {
   offer: Offer;
-  onCardMouseOver(id:number): void;
+  onCardMouseOver?:(id:string) => void;
   isMainPage: boolean;
 };
 
@@ -14,14 +14,13 @@ export default function OfferCard({ offer, onCardMouseOver, isMainPage }: OfferC
   return (
     <article className={isMainPage ? 'cities__card place-card' : 'near-places__card place-card'}
       id ={offer.id.toString()}
-      onMouseOver={(evt)=> {
+      onMouseOver={onCardMouseOver ? (evt)=> {
         const target = evt.currentTarget as HTMLElement;
-        onCardMouseOver(+target.id);
-      }}
-      onMouseLeave={(evt)=> {
-        const target = evt.currentTarget as HTMLElement;
-        onCardMouseOver(-target.id);
-      }}
+        onCardMouseOver(target.id);
+      } : undefined}
+      onMouseLeave={onCardMouseOver ? ()=> {
+        onCardMouseOver('0');
+      } : undefined}
     >
       {
         isMainPage &&

@@ -9,13 +9,21 @@ import NotFoundPage from '../../pages/not-found-page';
 import PrivateRoute from '../private-route/privaye-route';
 import { ReviewType } from '../../types/reviews';
 import { useAppSelector } from '../hooks';
+import LoadingScreen from '../../pages/loading-page';
 
 type AppPageProps = {
   reviews: ReviewType[];
 }
 
 export default function App({ reviews }: AppPageProps): JSX.Element {
-  const offers = useAppSelector((state)=>state.offers);
+  const offers = useAppSelector((state)=>state.offerFilter);
+  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+
+  if (isOffersDataLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
   return (
     <HelmetProvider>
       <BrowserRouter>

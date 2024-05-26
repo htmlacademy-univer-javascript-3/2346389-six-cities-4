@@ -32,6 +32,11 @@ export enum CitiesName {
   HAMBURG = 'Hamburg',
 }
 
+export enum MapClasses {
+  SectionMainMapClass = 'cities__map map',
+  SectionPropertyMapClass = 'offer__map map',
+}
+
 export enum SortingTypes {
   Popular = 'Popular',
   LowToHigh = 'Price: low to high',
@@ -42,6 +47,12 @@ export enum SortingTypes {
 export enum Actions {
   PICK_CITY = 'PICK_CITY',
   FILTER_OFFERS = 'FILTER_OFFERS',
+  LOAD_OFFERS = 'LOAD_OFFERS',
+  SET_STATUS_OFFERS_DATA_LOADING = 'SET_STATUS_OFFERS_DATA_LOADING',
+}
+
+export enum APIRoute {
+  Offers = '/offers',
 }
 
 export const URL_MARKER_DEFAULT =
