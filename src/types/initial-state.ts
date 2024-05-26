@@ -1,8 +1,11 @@
 import { Offer } from './offers';
 
 export type initialStateType = {
-    cityName: string | null;
-    offers: Offer[];
-    offerFilter: Offer[];
-    isOffersDataLoading: boolean;
-  }
+  cityName: string | null;
+  offers: Offer[];
+  filteredOffers: Offer[];
+  isOffersDataLoading: boolean;
+  authorizationStatus: string;
+  userEmail: string;
+  error: string | null;
+}

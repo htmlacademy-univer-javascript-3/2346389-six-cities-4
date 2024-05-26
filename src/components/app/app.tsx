@@ -1,22 +1,24 @@
-import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { AppRoute, AuthorizationStatus } from '../const/const';
+import { AppRoute } from '../const/const';
 import MainPage from '../../pages/main-page';
 import FavoritesPage from '../../pages/favorites-page';
 import LoginPage from '../../pages/login-page';
 import OfferPage from '../../pages/offer-page';
 import NotFoundPage from '../../pages/not-found-page';
-import PrivateRoute from '../private-route/privaye-route';
+import PrivateRoute from '../private-route/private-route';
 import { ReviewType } from '../../types/reviews';
 import { useAppSelector } from '../hooks';
 import LoadingScreen from '../../pages/loading-page';
+import { HistoryRouter } from '../history-route/history-route';
+import { browserHistory } from '../../browser-history';
 
-type AppPageProps = {
+type AppScreenProps = {
   reviews: ReviewType[];
 }
 
-export default function App({ reviews }: AppPageProps): JSX.Element {
-  const offers = useAppSelector((state)=>state.offerFilter);
+export default function App({ reviews }: AppScreenProps): JSX.Element {
+  const offers = useAppSelector((state)=>state.filteredOffers);
   const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
 
   if (isOffersDataLoading) {
@@ -24,9 +26,10 @@ export default function App({ reviews }: AppPageProps): JSX.Element {
       <LoadingScreen />
     );
   }
+
   return (
     <HelmetProvider>
-      <BrowserRouter>
+      <HistoryRouter history={browserHistory}>
         <Routes>
 
           <Route
@@ -42,9 +45,7 @@ export default function App({ reviews }: AppPageProps): JSX.Element {
           <Route
             path={AppRoute.Favorites}
             element={
-              <PrivateRoute
-                authorizationStatus={AuthorizationStatus.Auth}
-              >
+              <PrivateRoute>
                 <FavoritesPage offers={offers}/>
               </PrivateRoute>
             }
@@ -61,7 +62,7 @@ export default function App({ reviews }: AppPageProps): JSX.Element {
           />
 
         </Routes>
-      </BrowserRouter>
+      </HistoryRouter>
     </HelmetProvider>
   );
 }
