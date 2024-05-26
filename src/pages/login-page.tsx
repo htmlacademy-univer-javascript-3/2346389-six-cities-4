@@ -1,16 +1,18 @@
 import Header from '../components/header/header';
 import {useRef, FormEvent} from 'react';
 import { useAppDispatch, useAppSelector } from '../components/hooks';
-import { loginAction } from '../store/loginAction';
+import { loginAction } from '../store/api-actions';
 import { AuthData } from '../types/auth-data';
 import { Link } from 'react-router-dom';
 import { validatePassword } from '../components/const/util';
+import { getCityName } from '../store/offers-data/selectors';
+
 export default function LoginScreen(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
   const dispatch = useAppDispatch();
-  const currentCity = useAppSelector((state) => state.cityName);
+  const currentCity = useAppSelector(getCityName);
 
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));

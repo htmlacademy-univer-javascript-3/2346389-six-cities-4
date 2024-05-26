@@ -1,14 +1,19 @@
-import { User } from './reviews';
-
 export type Location = {
-  width: number;
-  height: number;
+  latitude: number;
+  longitude: number;
   zoom: number;
 };
 
 export type City = {
   name: string;
   location: Location;
+};
+
+export type User = {
+  id: number;
+  name: string;
+  avatarUrl: string;
+  isPro: boolean;
 };
 
 export type Offer = {
@@ -19,7 +24,7 @@ export type Offer = {
   price: number;
   bedrooms: number;
   maxAdults: number;
-  inside: string[];
+  goods: string[];
   host: User;
   city: City;
   location: Location;
@@ -29,4 +34,3 @@ export type Offer = {
   images: string[];
   rating: number;
 };
-

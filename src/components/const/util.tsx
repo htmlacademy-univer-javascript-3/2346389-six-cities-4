@@ -1,4 +1,5 @@
 import { Offer } from '../../types/offers';
+import { SortingTypes } from './const';
 import dayjs from 'dayjs';
 
 const RELEASE_DATE_FORMAT = 'MMMM YYYY';
@@ -28,4 +29,18 @@ export function validatePassword(password: string): boolean {
   const hasNumber = /\d/.test(password);
 
   return hasLetter && hasNumber;
+}
+
+export function sortOffers(offers: Offer[], sortingType: string | null) {
+  const sortedOffers = [...offers];
+  switch(sortingType) {
+    case SortingTypes.LowToHigh:
+      return sortedOffers.sort(compareOffersPriceUp);
+    case SortingTypes.HighToLow:
+      return sortedOffers.sort(compareOffersPriceDown);
+    case SortingTypes.TopRated:
+      return sortedOffers.sort(compareOffersRatingDown);
+    default:
+      return sortedOffers;
+  }
 }

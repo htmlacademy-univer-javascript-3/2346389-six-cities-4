@@ -1,22 +1,17 @@
-
 import FavoritesList from '../components/lists/favourites-list';
-import { Offer } from '../types/offers';
 import Header from '../components/header/header';
 
-type FavoriteScreenProps = {
-  offers: Offer[];
-}
-
-export default function FavoritesPage({ offers }: FavoriteScreenProps): JSX.Element {
+export default function FavoritesScreen(): JSX.Element {
   return (
     <div className="page">
       <Header />
+
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
-              <FavoritesList offers={offers}/>
+              <FavoritesList/>
             </ul>
           </section>
         </div>

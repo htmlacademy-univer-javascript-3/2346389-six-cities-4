@@ -1,29 +1,22 @@
-import { useParams } from 'react-router-dom';
-import { Offer } from '../types/offers';
-import { getRatingStars } from '../components/const/util';
 import Header from '../components/header/header';
-import { ReviewType } from '../types/reviews';
+import ReviewsList from '../components/lists/reviews-list';
 import ReviewForm from '../components/review-form/review-form';
+import { getRatingStars } from '../components/const/util';
 import OffersList from '../components/lists/offer-list';
 import Map from '../components/map/map';
-import ReviewsList from '../components/lists/reviews-list';
-import { HOST_AVATAR_SIZE } from '../components/const/const';
 import NotFoundPage from './not-found-page';
 import { useAppSelector } from '../components/hooks';
+import { getCurrentOfferDataLoadingStatus, getNearbyOffers, getOfferInfo } from '../store/current-offer-data/selectors';
+import { getAuthorizationStatus } from '../store/authorization-user-process/selectors';
 
-type OfferScreenProps = {
-  offer: Offer | null;
-  reviews: ReviewType[];
-  nearbyOffers: Offer[];
-};
-
-export default function OfferScreen({offer, reviews, nearbyOffers}: OfferScreenProps): JSX.Element {
-  const {id} = useParams();
-  const isCurrenOfferDataLoading = useAppSelector((state) => state.isCurrentOfferDataLoading);
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+export default function OfferScreen(): JSX.Element {
+  const offer = useAppSelector(getOfferInfo);
+  const isCurrenOfferDataLoading = useAppSelector(getCurrentOfferDataLoadingStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const nearbyOffers = useAppSelector(getNearbyOffers);
 
   if (offer && !isCurrenOfferDataLoading) {
-    const {isFavorite, isPremium, description, inside, host, images, rating, maxAdults, price, title, type, bedrooms} = offer;
+    const {isFavorite, isPremium, description, goods, host, images, rating, maxAdults, price, title, type, bedrooms} = offer;
     return (
       <div className="page">
         <Header />
@@ -86,9 +79,9 @@ export default function OfferScreen({offer, reviews, nearbyOffers}: OfferScreenP
                 <div className="offer__inside">
                   <h2 className="offer__inside-title">What&apos;s inside</h2>
                   <ul className="offer__inside-list">
-                    {inside.map((ins) => (
-                      <li className="offer__inside-item" key={ins}>
-                        {ins}
+                    {goods.map((good) => (
+                      <li className="offer__inside-item" key={good}>
+                        {good}
                       </li>
                     ))}
                   </ul>
@@ -100,8 +93,8 @@ export default function OfferScreen({offer, reviews, nearbyOffers}: OfferScreenP
                       <img
                         className="offer__avatar user__avatar"
                         src={host.avatarUrl}
-                        width={HOST_AVATAR_SIZE}
-                        height={HOST_AVATAR_SIZE}
+                        width="74"
+                        height="74"
                         alt="Host avatar"
                       />
                     </div>
@@ -117,8 +110,7 @@ export default function OfferScreen({offer, reviews, nearbyOffers}: OfferScreenP
                   </div>
                 </div>
                 <section className="offer__reviews reviews">
-                  <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
-                  <ReviewsList reviews={reviews}/>
+                  <ReviewsList/>
                   {
                     authorizationStatus === 'AUTH' &&
                     <ReviewForm id={offer.id}/>
@@ -126,7 +118,7 @@ export default function OfferScreen({offer, reviews, nearbyOffers}: OfferScreenP
                 </section>
               </div>
             </div>
-            <Map isMainPage={false} offers={[...nearbyOffers, offer]} activeOfferId={id}/>
+            <Map isMainScreen={false} offers={[...nearbyOffers, offer]}/>
           </section>
           <div className="container">
             <section className="near-places places">
@@ -134,7 +126,7 @@ export default function OfferScreen({offer, reviews, nearbyOffers}: OfferScreenP
                               Other places in the neighbourhood
               </h2>
               <div className="near-places__list places__list">
-                <OffersList isMainPage={false} offers={nearbyOffers}/>
+                <OffersList isMainScreen={false} offers={nearbyOffers}/>
               </div>
             </section>
           </div>

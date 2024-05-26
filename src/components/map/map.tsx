@@ -1,8 +1,10 @@
-import {useRef, useEffect} from 'react';
-import {Icon, Marker} from 'leaflet';
+import { useRef, useEffect } from 'react';
+import { Icon, Marker } from 'leaflet';
 import useMap from '../hooks/use-map';
 import { Offer } from '../../types/offers';
 import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT, MapClasses } from '../const/const';
+import { useAppSelector } from '../hooks';
+import { getCurrentOfferId } from '../../store/page-events/selectors';
 import 'leaflet/dist/leaflet.css';
 
 const defaultCustomIcon = new Icon({
@@ -20,13 +22,13 @@ const currentCustomIcon = new Icon({
 
 type MapProps = {
    offers: Offer[];
-   activeOfferId?: string;
-   isMainPage: boolean;
+   isMainScreen: boolean;
 }
 
 
 export default function Map(props: MapProps): JSX.Element {
-  const {offers, activeOfferId, isMainPage} = props;
+  const {offers, isMainScreen} = props;
+  const activeOfferId = useAppSelector(getCurrentOfferId);
   const mapRef = useRef(null);
   const map = useMap(mapRef, offers[0]);
 
@@ -40,8 +42,8 @@ export default function Map(props: MapProps): JSX.Element {
 
       offers.forEach((offer: Offer) => {
         const marker = new Marker({
-          lat: offer.location.width,
-          lng: offer.location.height,
+          lat: offer.location.latitude,
+          lng: offer.location.longitude,
         });
 
         marker.setIcon(
@@ -56,11 +58,11 @@ export default function Map(props: MapProps): JSX.Element {
 
   useEffect(() => {
     if (map) {
-      map.flyTo([offers[0].city.location.width, offers[0].city.location.height], offers[0].city.location.zoom);
+      map.flyTo([offers[0].city.location.latitude, offers[0].city.location.longitude], offers[0].city.location.zoom);
     }
   }, [map, offers]);
 
   return (
-    <section className={isMainPage ? MapClasses.SectionMainMapClass : MapClasses.SectionPropertyMapClass} ref={mapRef}></section>
+    <section className={isMainScreen ? MapClasses.SectionMainMapClass : MapClasses.SectionPropertyMapClass} ref={mapRef}></section>
   );
 }
