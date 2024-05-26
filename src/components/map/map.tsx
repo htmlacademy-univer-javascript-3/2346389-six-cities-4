@@ -1,8 +1,8 @@
-import { useRef, useEffect } from 'react';
-import { Icon, Marker } from 'leaflet';
+import {useRef, useEffect} from 'react';
+import {Icon, Marker} from 'leaflet';
 import useMap from '../hooks/use-map';
 import { Offer } from '../../types/offers';
-import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT, MapClasses } from '../const/const';
+import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT, MapClasses } from '../const/const';
 import 'leaflet/dist/leaflet.css';
 
 const defaultCustomIcon = new Icon({
@@ -21,12 +21,12 @@ const currentCustomIcon = new Icon({
 type MapProps = {
    offers: Offer[];
    activeOfferId?: string;
-   isMainPage: boolean;
+   isMainScreen: boolean;
 }
 
 
 export default function Map(props: MapProps): JSX.Element {
-  const {offers, activeOfferId, isMainPage} = props;
+  const {offers, activeOfferId, isMainScreen} = props;
   const mapRef = useRef(null);
   const map = useMap(mapRef, offers[0]);
 
@@ -61,6 +61,6 @@ export default function Map(props: MapProps): JSX.Element {
   }, [map, offers]);
 
   return (
-    <section className={isMainPage ? MapClasses.SectionMainMapClass : MapClasses.SectionPropertyMapClass} ref={mapRef}></section>
+    <section className={isMainScreen ? MapClasses.SectionMainMapClass : MapClasses.SectionPropertyMapClass} ref={mapRef}></section>
   );
 }

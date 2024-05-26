@@ -1,4 +1,5 @@
 import { Offer } from './offers';
+import { ReviewType } from './reviews';
 
 export type initialStateType = {
   cityName: string | null;
@@ -8,4 +9,11 @@ export type initialStateType = {
   authorizationStatus: string;
   userEmail: string;
   error: string | null;
+  currentOffer: {
+    offerInfo: Offer | null;
+    comments: ReviewType[];
+    nearbyOffers: Offer[];
+    isCommentDataSending: boolean;
+  };
+  isCurrentOfferDataLoading: boolean;
 }
