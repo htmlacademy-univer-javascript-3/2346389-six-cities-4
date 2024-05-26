@@ -1,15 +1,9 @@
-import {useRef, useEffect} from 'react';
-import {Icon, Marker, layerGroup} from 'leaflet';
+import { useRef, useEffect } from 'react';
+import { Icon, Marker } from 'leaflet';
 import useMap from '../hooks/use-map';
-import 'leaflet/dist/leaflet.css';
 import { Offer } from '../../types/offers';
-import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../const/const';
-
-type MapProps = {
-  offers: Offer[];
-  activeOfferId: number;
-  isMainPage: boolean;
-}
+import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT, MapClasses } from '../const/const';
+import 'leaflet/dist/leaflet.css';
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
@@ -23,16 +17,28 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
+
+type MapProps = {
+   offers: Offer[];
+   activeOfferId?: string;
+   isMainPage: boolean;
+}
+
+
 export default function Map(props: MapProps): JSX.Element {
   const {offers, activeOfferId, isMainPage} = props;
-
   const mapRef = useRef(null);
   const map = useMap(mapRef, offers[0]);
 
   useEffect(() => {
     if (map) {
-      const markerLayer = layerGroup().addTo(map);
-      offers.forEach((offer) => {
+      map.eachLayer((layer) => {
+        if (layer.options.pane === 'markerPane') {
+          map.removeLayer(layer);
+        }
+      });
+
+      offers.forEach((offer: Offer) => {
         const marker = new Marker({
           lat: offer.location.width,
           lng: offer.location.height,
@@ -43,12 +49,8 @@ export default function Map(props: MapProps): JSX.Element {
             ? currentCustomIcon
             : defaultCustomIcon
         )
-          .addTo(markerLayer);
+          .addTo(map);
       });
-
-      return () => {
-        map.removeLayer(markerLayer);
-      };
     }
   }, [map, offers, activeOfferId]);
 
@@ -59,6 +61,6 @@ export default function Map(props: MapProps): JSX.Element {
   }, [map, offers]);
 
   return (
-    <section className={isMainPage ? 'cities__map map' : 'offer__map map'} ref={mapRef}></section>
+    <section className={isMainPage ? MapClasses.SectionMainMapClass : MapClasses.SectionPropertyMapClass} ref={mapRef}></section>
   );
 }

@@ -7,7 +7,6 @@ import ReviewForm from '../components/forms/review-form';
 import OffersList from '../components/lists/offer-list';
 import Map from '../components/map/map';
 import ReviewsList from '../components/lists/reviews-list';
-import { useState } from 'react';
 import { HOST_AVATAR_SIZE } from '../components/const/const';
 
 type OfferScreenProps = {
@@ -17,9 +16,8 @@ type OfferScreenProps = {
 
 export default function OfferPage({ offers, reviews }: OfferScreenProps): JSX.Element {
   const {id} = useParams();
-  const [{isFavorite, isPremium, description, inside, host,
-    images, rating, maxAdults, price, title, type, bedrooms}] = offers.filter((offer) => offer.id.toString() === id);
-  const [activeOfferId, setActiveOfferId] = useState(0);
+  const offer = offers.filter((ad) => ad.id.toString() === id);
+  const [{isFavorite, isPremium, description, inside, host, images, rating, maxAdults, price, title, type, bedrooms}] = offer;
 
   return (
     <div className="page">
@@ -147,7 +145,7 @@ export default function OfferPage({ offers, reviews }: OfferScreenProps): JSX.El
               </section>
             </div>
           </div>
-          <Map isMainPage={false} offers={offers.slice(0,3)} activeOfferId={activeOfferId}/>
+          <Map isMainPage={false} offers={[...offers.slice(0,3), ...offer]} activeOfferId={id}/>
         </section>
         <div className="container">
           <section className="near-places places">
@@ -155,7 +153,7 @@ export default function OfferPage({ offers, reviews }: OfferScreenProps): JSX.El
                             Other places in the neighbourhood
             </h2>
             <div className="near-places__list places__list">
-              <OffersList offers={offers.slice(0,3)} setActiveOfferId={setActiveOfferId} isMainPage={false}/>
+              <OffersList isMainPage={false} offers={offers.slice(0,3)}/>
             </div>
           </section>
         </div>

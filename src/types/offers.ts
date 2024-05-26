@@ -12,7 +12,7 @@ export type City = {
 };
 
 export type Offer = {
-  id: number;
+  id: string;
   title: string;
   description: string;
   type: string;

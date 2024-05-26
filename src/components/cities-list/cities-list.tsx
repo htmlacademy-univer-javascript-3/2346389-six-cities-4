@@ -15,10 +15,10 @@ export default function CitiesList({setSortingType, currentCity}: CitiesListProp
   return (
     <ul className="locations__list tabs__list" onClick={(evt) => {
       const target = evt.target as HTMLElement;
-      if (target.tagName !== 'SPAN') {
+      if (target.tagName !== 'A' && target.tagName !== 'SPAN') {
         return;
       }
-      dispatch(cityPick(target.textContent));
+      dispatch(cityPick(target.firstChild?.textContent ? target.firstChild.textContent : null));
       dispatch(offerFilter());
       setSortingType(SortingTypes.Popular);
     }}
