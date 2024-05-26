@@ -13,7 +13,7 @@ type MainPageProps = {
   offers: Offer[];
 }
 
-export default function MainScreen({ offers }: MainPageProps): JSX.Element {
+export default function MainPage({ offers }: MainPageProps): JSX.Element {
   const [activeOfferId, setActiveOfferId] = useState('0');
   const currentCity = useAppSelector((state)=>state.cityName);
   const [sortingType, setSortingType] = useState<string | null>(SortingTypes.Popular);

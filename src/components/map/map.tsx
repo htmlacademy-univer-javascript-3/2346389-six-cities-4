@@ -21,12 +21,12 @@ const currentCustomIcon = new Icon({
 type MapProps = {
    offers: Offer[];
    activeOfferId?: string;
-   isMainScreen: boolean;
+   isMainPage: boolean;
 }
 
 
 export default function Map(props: MapProps): JSX.Element {
-  const {offers, activeOfferId, isMainScreen} = props;
+  const {offers, activeOfferId, isMainPage} = props;
   const mapRef = useRef(null);
   const map = useMap(mapRef, offers[0]);
 
@@ -61,6 +61,6 @@ export default function Map(props: MapProps): JSX.Element {
   }, [map, offers]);
 
   return (
-    <section className={isMainScreen ? MapClasses.SectionMainMapClass : MapClasses.SectionPropertyMapClass} ref={mapRef}></section>
+    <section className={isMainPage ? MapClasses.SectionMainMapClass : MapClasses.SectionPropertyMapClass} ref={mapRef}></section>
   );
 }
