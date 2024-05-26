@@ -7,21 +7,20 @@ import LoginPage from '../../pages/login-page';
 import OfferPage from '../../pages/offer-page';
 import NotFoundPage from '../../pages/not-found-page';
 import PrivateRoute from '../private-route/private-route';
-import { ReviewType } from '../../types/reviews';
 import { useAppSelector } from '../hooks';
 import LoadingScreen from '../../pages/loading-page';
 import { HistoryRouter } from '../history-route/history-route';
 import { browserHistory } from '../../browser-history';
 
-type AppScreenProps = {
-  reviews: ReviewType[];
-}
-
-export default function App({ reviews }: AppScreenProps): JSX.Element {
+export default function App(): JSX.Element {
   const offers = useAppSelector((state)=>state.filteredOffers);
   const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  const offerComments = useAppSelector((state) => state.currentOffer.comments);
+  const nearbyOffers = useAppSelector((state) => state.currentOffer.nearbyOffers);
+  const offerInfo = useAppSelector((state) => state.currentOffer.offerInfo);
+  const isCurrenOfferDataLoading = useAppSelector((state) => state.isCurrentOfferDataLoading);
 
-  if (isOffersDataLoading) {
+  if (isOffersDataLoading || isCurrenOfferDataLoading) {
     return (
       <LoadingScreen />
     );
@@ -53,7 +52,7 @@ export default function App({ reviews }: AppScreenProps): JSX.Element {
 
           <Route
             path={AppRoute.Offer}
-            element={<OfferPage offers={offers} reviews={reviews}/>}
+            element={<OfferPage offer={offerInfo} reviews={offerComments} nearbyOffers={nearbyOffers}/>}
           />
 
           <Route

@@ -32,6 +32,13 @@ export enum CitiesName {
   HAMBURG = 'Hamburg',
 }
 
+export enum AdClasses {
+  ArticlePropertyAdClass = 'near-places__card place-card',
+  ArticleMainAdClass = 'cities__card place-card',
+  ImageWrapperPropertyAdClass = 'near-places__image-wrapper place-card__image-wrapper',
+  ImageWrapperMainAdClass = 'cities__image-wrapper place-card__image-wrapper',
+}
+
 export enum MapClasses {
   SectionMainMapClass = 'cities__map map',
   SectionPropertyMapClass = 'offer__map map',
@@ -53,12 +60,20 @@ export enum Actions {
   SET_USER_EMAIL = 'SET_USER_EMAIL',
   SET_ERROR = 'SET_ERROR',
   REDIRECT_ROUTE = 'REDIRECT_ROUTE',
+  LOAD_OFFER_INFO = 'LOAD_OFFER_INFO',
+  LOAD_NEARBY_OFFERS = 'LOAD_NEARBY_OFFERS',
+  LOAD_OFFER_COMMENTS = 'LOAD_OFFER_COMMENTS',
+  SET_CURRENT_OFFER_DATA_LOADING = 'SET_CURRENT_OFFER_DATA_LOADING',
+  SET_COMMENT_DATA_SENDING = 'SET_COMMENT_DATA_SENDING',
+  ADD_REVIEW = 'ADD_REVIEW'
 }
 
 export enum APIRoute {
-  Offers = '/offers',
+  Offers = '/offers/',
   Login = '/login',
   Logout = '/logout',
+  Comment = '/comments/',
+  NearbyOffers = '/nearby'
 }
 
 export const TIMEOUT_SHOW_ERROR = 2000;

@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import {Provider} from 'react-redux';
-import { reviews } from './mocks/reviews';
 import {store} from './store';
 import { fetchOffersAction } from './store/api-actions';
+import { ToastContainer } from 'react-toastify';
 
 store.dispatch(fetchOffersAction());
 
@@ -15,9 +15,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store ={store}>
-      <App
-        reviews={reviews}
-      />
+      <ToastContainer />
+      <App/>
     </Provider>
   </React.StrictMode>
 );

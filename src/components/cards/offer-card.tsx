@@ -1,19 +1,22 @@
 import { Link } from 'react-router-dom';
 import { Offer } from '../../types/offers';
 import { getRatingStars } from '../const/util';
-import { PLACE_CARD_HEIGHT, PLACE_CARD_WIDTH } from '../const/const';
+import { offerInfoInitAction } from '../../store/api-actions';
+import { useAppDispatch } from '../hooks';
+import { AdClasses } from '../const/const';
 
 type OfferCardProps = {
   offer: Offer;
-  onCardMouseOver?:(id:string) => void;
   isMainPage: boolean;
+  onCardMouseOver?: (id:string) => void;
 };
 
-export default function OfferCard({ offer, onCardMouseOver, isMainPage }: OfferCardProps): JSX.Element {
-  const {id, title, type, price, isPremium, isFavorite, previewImage: image, rating} = offer;
+export default function OfferCard({ offer, isMainPage, onCardMouseOver }: OfferCardProps): JSX.Element {
+  const dispatch = useAppDispatch();
+  const {isFavorite, isPremium, previewImage, price, title, type, rating, id} = offer;
   return (
-    <article className={isMainPage ? 'cities__card place-card' : 'near-places__card place-card'}
-      id ={offer.id.toString()}
+    <article className={isMainPage ? AdClasses.ArticleMainAdClass : AdClasses.ArticlePropertyAdClass}
+      id ={id}
       onMouseOver={onCardMouseOver ? (evt)=> {
         const target = evt.currentTarget as HTMLElement;
         onCardMouseOver(target.id);
@@ -28,9 +31,9 @@ export default function OfferCard({ offer, onCardMouseOver, isMainPage }: OfferC
           <span>{isPremium ? 'Premium' : ''}</span>
         </div>
       }
-      <div className={isMainPage ? 'cities__image-wrapper place-card__image-wrapper' : 'near-places__image-wrapper place-card__image-wrapper'}>
+      <div className={isMainPage ? AdClasses.ImageWrapperMainAdClass : AdClasses.ImageWrapperPropertyAdClass}>
         <a href="#">
-          <img className="place-card__image" src={image} width={PLACE_CARD_WIDTH} height={PLACE_CARD_HEIGHT} alt="Place image" />
+          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
         </a>
       </div>
       <div className="place-card__info">
@@ -56,7 +59,12 @@ export default function OfferCard({ offer, onCardMouseOver, isMainPage }: OfferC
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`/offer/${id}`} state={offer}>{title}</Link>
+          <Link to={`/offer/${id}`} onClick={() => {
+            dispatch(offerInfoInitAction(id));
+          }}
+          >
+            {title}
+          </Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
