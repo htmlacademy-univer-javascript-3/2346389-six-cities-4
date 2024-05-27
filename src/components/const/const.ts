@@ -2,7 +2,7 @@ export enum AppRoute {
   Favorites = '/favorites',
   Root = '/',
   Login = '/login',
-  Offer = '/offer/:id'
+  Offer = '/offer/:id',
 }
 
 export enum AuthorizationStatus {
@@ -28,7 +28,8 @@ export enum SlicesName {
   User = 'USER',
   OffersData = 'OFFERS_DATA',
   CurrentOfferData = 'CURRENT_OFFER_DATA',
-  UserReview = 'USER_REVIEW',
+  FavoriteOffersData = 'FAVORITE_OFFERS_DATA',
+  UserReview = 'USER_REVIEW'
 }
 
 export enum CitiesName {
@@ -71,7 +72,8 @@ export enum APIRoute {
   Login = '/login',
   Logout = '/logout',
   Comment = '/comments/',
-  NearbyOffers = '/nearby'
+  NearbyOffers = '/nearby',
+  FavoriteOffers = '/favorite/'
 }
 
 export const URL_MARKER_DEFAULT =

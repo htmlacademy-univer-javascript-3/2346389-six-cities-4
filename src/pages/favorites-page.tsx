@@ -1,32 +1,29 @@
 import FavoritesList from '../components/lists/favourites-list';
 import Header from '../components/header/header';
+import Footer from '../components/footer/footer';
+import { FavoritesEmptyPage } from './favourites-empty-page';
+import { useAppSelector } from '../components/hooks';
+import { getFavoriteOffers } from '../store/favorite-offers-data/selectors';
+
 
 export default function FavoritesScreen(): JSX.Element {
+  const favoriteOffers = useAppSelector(getFavoriteOffers);
+
   return (
     <div className="page">
-      <Header />
-
-      <main className="page__main page__main--favorites">
-        <div className="page__favorites-container container">
-          <section className="favorites">
-            <h1 className="favorites__title">Saved listing</h1>
-            <ul className="favorites__list">
-              <FavoritesList/>
-            </ul>
-          </section>
-        </div>
-      </main>
-      <footer className="footer container">
-        <a className="footer__logo-link" href="main.html">
-          <img
-            className="footer__logo"
-            src="img/logo.svg"
-            alt="6 cities logo"
-            width="64"
-            height="33"
-          />
-        </a>
-      </footer>
+      <Header/>
+      {!favoriteOffers.length ? <FavoritesEmptyPage/> :
+        <main className="page__main page__main--favorites">
+          <div className="page__favorites-container container">
+            <section className="favorites">
+              <h1 className="favorites__title">Saved listing</h1>
+              <ul className="favorites__list">
+                <FavoritesList />
+              </ul>
+            </section>
+          </div>
+        </main>}
+      <Footer/>
     </div>
   );
 }

@@ -26,6 +26,11 @@ export type CurrentOfferData = {
    nearbyOffers: Offer[];
 }
 
+export type FavoriteOffersData = {
+  isFavoriteOffersDataLoading: boolean;
+  favoriteOffers: Offer[];
+}
+
 export type UserReview = {
    isCommentDataSending: boolean;
 }
