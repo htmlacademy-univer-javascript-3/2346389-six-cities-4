@@ -1,22 +1,41 @@
 import Header from '../components/header/header';
+import Footer from '../components/footer/footer';
 import ReviewsList from '../components/lists/reviews-list';
 import ReviewForm from '../components/review-form/review-form';
-import { getRatingStars } from '../components/const/util';
 import OffersList from '../components/lists/offer-list';
 import Map from '../components/map/map';
 import NotFoundPage from './not-found-page';
-import { useAppSelector } from '../components/hooks';
-import { getCurrentOfferDataLoadingStatus, getNearbyOffers, getOfferInfo } from '../store/current-offer-data/selectors';
+import { getRatingStars } from '../components/const/util';
+import { useAppDispatch, useAppSelector } from '../components/hooks';
+import { getOfferInfo, getCurrentOfferDataLoadingStatus, getNearbyOffers } from '../store/current-offer-data/selectors';
 import { getAuthorizationStatus } from '../store/authorization-user-process/selectors';
+import { browserHistory } from '../browser-history';
+import { setOfferFavoriteStatusAction } from '../store/api-actions';
+import { AppRoute } from '../components/const/const';
+import { useState } from 'react';
 
 export default function OfferScreen(): JSX.Element {
+  const dispatch = useAppDispatch();
   const offer = useAppSelector(getOfferInfo);
   const isCurrenOfferDataLoading = useAppSelector(getCurrentOfferDataLoadingStatus);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const nearbyOffers = useAppSelector(getNearbyOffers);
+  const [isFavoriteOffer, setFavoriteOffer] = useState<boolean | null>(offer?.isFavorite ? offer.isFavorite : null);
+
 
   if (offer && !isCurrenOfferDataLoading) {
-    const {isFavorite, isPremium, description, goods, host, images, rating, maxAdults, price, title, type, bedrooms} = offer;
+    const {id, isPremium, description, goods, host, images, rating, maxAdults, price, title, type, bedrooms} = offer;
+    const favoriteStatus = `${+!isFavoriteOffer}`;
+    const handleFavoriteButtonClick = () => {
+      if(authorizationStatus !== 'AUTH') {
+        browserHistory.push(AppRoute.Login);
+
+        return;
+      }
+      setFavoriteOffer((prevState) => !prevState);
+      dispatch(setOfferFavoriteStatusAction({id, favoriteStatus}));
+    };
+
     return (
       <div className="page">
         <Header />
@@ -47,7 +66,7 @@ export default function OfferScreen(): JSX.Element {
                 </div>
                 <div className="offer__name-wrapper">
                   <h1 className="offer__name">{title}</h1>
-                  <button className={`offer__bookmark-button button ${isFavorite ? 'offer__bookmark-button--active' : ''}`} type="button">
+                  <button className={`offer__bookmark-button button ${isFavoriteOffer ? 'offer__bookmark-button--active' : ''}`} onClick={handleFavoriteButtonClick} type="button">
                     <svg className="offer__bookmark-icon" width="31" height="33">
                       <use xlinkHref="#icon-bookmark"></use>
                     </svg>
@@ -131,6 +150,7 @@ export default function OfferScreen(): JSX.Element {
             </section>
           </div>
         </main>
+        <Footer/>
       </div>
     );
   }
