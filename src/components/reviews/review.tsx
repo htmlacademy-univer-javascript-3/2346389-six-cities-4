@@ -20,7 +20,7 @@ export default function Review({review}: ReviewProps): JSX.Element {
       </div>
       <div className="reviews__info">
         <div className="reviews__rating rating">
-          <div className="reviews__stars rating__stars">
+          <div className="reviews__stars rating__stars" data-test={getRatingStars(rating)}>
             <span style={{width: getRatingStars(rating)}}></span>
             <span className="visually-hidden">Rating</span>
           </div>

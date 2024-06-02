@@ -9,7 +9,7 @@ import { getRatingStars } from '../components/const/util';
 import { useAppDispatch, useAppSelector } from '../components/hooks';
 import { getOfferInfo, getCurrentOfferDataLoadingStatus, getNearbyOffers } from '../store/current-offer-data/selectors';
 import { getAuthorizationStatus } from '../store/authorization-user-process/selectors';
-import { browserHistory } from '../browser-history';
+import browserHistory from '../browser-history';
 import { setOfferFavoriteStatusAction } from '../store/api-actions';
 import { AppRoute } from '../components/const/const';
 import { useState } from 'react';
