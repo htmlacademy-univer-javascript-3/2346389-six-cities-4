@@ -1,5 +1,5 @@
 import { useState, CSSProperties } from 'react';
-import ClipLoader from 'react-spinners/ClipLoader';
+import PacmanLoader from 'react-spinners/PacmanLoader';
 
 const override: CSSProperties = {
   display: 'block',
@@ -9,15 +9,15 @@ const override: CSSProperties = {
 
 function LoadingScreen() {
   const [loading] = useState(true);
-  const [color] = useState('#ffffff');
+  const [color] = useState('#007FFF');
 
   return (
     <div className="sweet-loading">
-      <ClipLoader
+      <PacmanLoader
         color={color}
         loading={loading}
         cssOverride={override}
-        size={150}
+        size={75}
         aria-label="Loading Spinner"
         data-testid="loader"
       />
