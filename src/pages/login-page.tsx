@@ -6,11 +6,10 @@ import { AuthData } from '../types/auth-data';
 import { Link } from 'react-router-dom';
 import { validatePassword } from '../components/const/util';
 import { getCityName } from '../store/offers-data/selectors';
-import { toast } from 'react-toastify';
 
-const ERROR_MESSAGE = 'Password must contain at least one letter and one number';
+const ERROR_MESSAGE = 'Пароль должен содержать как минимум одну букву и одну цифру';
 
-export default function LoginScreen(): JSX.Element {
+export default function LoginPage(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
@@ -30,7 +29,8 @@ export default function LoginScreen(): JSX.Element {
         password: passwordRef.current.value,
       });
     } else {
-      toast(ERROR_MESSAGE);
+      // eslint-disable-next-line no-alert
+      alert(ERROR_MESSAGE);
     }
   };
 

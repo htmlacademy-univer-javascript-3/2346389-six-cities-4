@@ -1,7 +1,7 @@
 import Header from '../components/header/header';
 import Footer from '../components/footer/footer';
 import ReviewsList from '../components/lists/reviews-list';
-import ReviewForm from '../components/review-form/review-form';
+import ReviewForm from '../components/forms/review-form';
 import OffersList from '../components/lists/offer-list';
 import Map from '../components/map/map';
 import NotFoundPage from './not-found-page';
@@ -43,7 +43,7 @@ export default function OfferScreen(): JSX.Element {
           <section className="offer">
             <div className="offer__gallery-container container">
               <div className="offer__gallery">
-                {images.map((image) => (
+                {images.slice(0, 5).map((image) => (
                   (
                     <div className="offer__image-wrapper" key = {image}>
                       <img className="offer__image" src={image} alt="studio"/>
@@ -137,7 +137,7 @@ export default function OfferScreen(): JSX.Element {
                 </section>
               </div>
             </div>
-            <Map isMainScreen={false} offers={[...nearbyOffers, offer]}/>
+            <Map isMainScreen={false} offers={[...nearbyOffers.slice(0, 3), offer]}/>
           </section>
           <div className="container">
             <section className="near-places places">
@@ -145,7 +145,7 @@ export default function OfferScreen(): JSX.Element {
                               Other places in the neighbourhood
               </h2>
               <div className="near-places__list places__list">
-                <OffersList isMainScreen={false} offers={nearbyOffers}/>
+                <OffersList isMainScreen={false} offers={nearbyOffers.slice(0, 3)}/>
               </div>
             </section>
           </div>

@@ -37,7 +37,15 @@ export default function ReviewForm({id}: {id: string}): JSX.Element {
     dispatch(sendOfferCommentAction({id, resetFormData, commentData:{
       comment: formData.review,
       rating: Number(formData.rating),
-    }}));
+    }}))
+      .then(() => {
+        // eslint-disable-next-line no-alert
+        alert('Отзыв успешно отправлен! Спасибо за обратную связь)');
+      })
+      .catch(() => {
+        // eslint-disable-next-line no-alert
+        alert('Произошла ошибка при отправке отзыва. Пожалуйста, попробуйте ещё раз.');
+      });
   };
 
   return (

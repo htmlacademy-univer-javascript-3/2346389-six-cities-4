@@ -7,7 +7,7 @@ const override: CSSProperties = {
   borderColor: 'red',
 };
 
-function LoadingScreen() {
+function LoadingPage() {
   const [loading] = useState(true);
   const [color] = useState('#007FFF');
 
@@ -25,4 +25,4 @@ function LoadingScreen() {
   );
 }
 
-export default LoadingScreen;
+export default LoadingPage;

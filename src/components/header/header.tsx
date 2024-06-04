@@ -4,13 +4,18 @@ import { AuthorizationStatus } from '../const/const';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { fetchFavoriteOffersAction, logoutAction } from '../../store/api-actions';
 import { getUserEmail } from '../../services/user-email';
-import { getAuthorizationStatus } from '../../store/authorization-user-process/selectors';
+import { getAuthorizationStatus, getUserInfo } from '../../store/authorization-user-process/selectors';
 import { getFavoriteOffers } from '../../store/favorite-offers-data/selectors';
 
 function Header(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const favoriteOffers = useAppSelector(getFavoriteOffers);
   const dispatch = useAppDispatch();
+  const userInfo = useAppSelector(getUserInfo);
+  const userAvatar = userInfo?.avatarUrl
+    ? { backgroundImage: `url(${userInfo?.avatarUrl})` }
+    : {};
+  const style = { ...userAvatar, borderRadius: '50%' };
   const userEmail = getUserEmail();
 
   return (
@@ -31,7 +36,7 @@ function Header(): JSX.Element {
                     dispatch(fetchFavoriteOffersAction());
                   }} to="/favorites"
                   >
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
+                    <div className="header__avatar-wrapper user__avatar-wrapper" style={style}>
                     </div>
                     <span className="header__user-name user__name" data-test={userEmail}>{userEmail}</span>
                     <span className="header__favorite-count">{favoriteOffers.length}</span>
@@ -66,4 +71,6 @@ function Header(): JSX.Element {
   );
 }
 
-export default React.memo(Header);
+const HeaderMemo = React.memo(Header);
+
+export default HeaderMemo;

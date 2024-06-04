@@ -2,13 +2,13 @@ import { Route, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AppRoute } from '../const/const';
 import MainPage from '../../pages/main-page';
-import FavoritesScreen from '../../pages/favorites-page';
+import FavoritesPage from '../../pages/favorites-page';
 import LoginPage from '../../pages/login-page';
 import OfferPage from '../../pages/offer-page';
 import NotFoundPage from '../../pages/not-found-page';
-import PrivateRoute from '../private-route/private-route';
+import PrivateRoute from '../routes/private-route';
 import { useAppSelector } from '../hooks';
-import LoadingScreen from '../../pages/loading-page';
+import LoadingPage from '../../pages/loading-page';
 import { getOffersDataLoadingStatus } from '../../store/offers-data/selectors';
 import { getCurrentOfferDataLoadingStatus } from '../../store/current-offer-data/selectors';
 
@@ -18,7 +18,7 @@ export default function App(): JSX.Element {
 
   if (isOffersDataLoading || isCurrenOfferDataLoading) {
     return (
-      <LoadingScreen />
+      <LoadingPage />
     );
   }
 
@@ -40,7 +40,7 @@ export default function App(): JSX.Element {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute>
-              <FavoritesScreen/>
+              <FavoritesPage/>
             </PrivateRoute>
           }
         />
