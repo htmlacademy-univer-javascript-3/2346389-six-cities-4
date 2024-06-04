@@ -2,8 +2,8 @@ import OfferCard from '../cards/offer-card';
 import { Offer } from '../../types/offers';
 
 type OffersListProps = {
-    offers: Offer[];
-    isMainScreen: boolean;
+  offers: Offer[];
+  isMainScreen: boolean;
 };
 
 export default function OffersList({ offers, isMainScreen }: OffersListProps) {

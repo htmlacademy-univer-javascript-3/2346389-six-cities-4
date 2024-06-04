@@ -5,7 +5,8 @@ import dayjs from 'dayjs';
 const RELEASE_DATE_FORMAT = 'MMMM YYYY';
 
 export function getRatingStars(rating: number): string {
-  return `${20 * rating}%`;
+  const roundedNumber = Math.round(rating);
+  return `${20 * roundedNumber}%`;
 }
 
 export function humanizeDate(date: string): string {

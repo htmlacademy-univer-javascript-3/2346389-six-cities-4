@@ -6,7 +6,7 @@ import { useAppSelector } from '../components/hooks';
 import { getFavoriteOffers } from '../store/favorite-offers-data/selectors';
 
 
-export default function FavoritesScreen(): JSX.Element {
+export default function FavoritesPage(): JSX.Element {
   const favoriteOffers = useAppSelector(getFavoriteOffers);
 
   return (

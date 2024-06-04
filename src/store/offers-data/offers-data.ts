@@ -14,10 +14,10 @@ export const offersData = createSlice({
   name: SlicesName.OffersData,
   initialState,
   reducers: {
-    filterOffers: (state) => {
+    offerFilter: (state) => {
       state.filteredOffers = state.offers.filter((offer)=> offer.city.name === state.cityName);
     },
-    setCity: (state, action: PayloadAction<string>) => {
+    cityPick: (state, action: PayloadAction<string>) => {
       state.cityName = action.payload;
     },
   },
@@ -43,4 +43,4 @@ export const offersData = createSlice({
   }
 });
 
-export const {filterOffers, setCity} = offersData.actions;
+export const {offerFilter, cityPick} = offersData.actions;

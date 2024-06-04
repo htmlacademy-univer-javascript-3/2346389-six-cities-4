@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { SortingTypes } from '../const/const';
 import { useAppDispatch, useAppSelector } from '../hooks';
-import { filterOffers, setCity } from '../../store/offers-data/offers-data';
+import { offerFilter, cityPick } from '../../store/offers-data/offers-data';
 import { setSortType } from '../../store/page-events/page-events';
 import { getCityName } from '../../store/offers-data/selectors';
 
@@ -15,8 +15,8 @@ export default function CitiesList(): JSX.Element {
       if (target.tagName !== 'A' && target.tagName !== 'SPAN') {
         return;
       }
-      dispatch(setCity(target.firstChild?.textContent ? target.firstChild.textContent : ''));
-      dispatch(filterOffers());
+      dispatch(cityPick(target.firstChild?.textContent ? target.firstChild.textContent : ''));
+      dispatch(offerFilter());
       dispatch(setSortType(SortingTypes.Popular));
     }}
     >

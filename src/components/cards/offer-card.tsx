@@ -29,7 +29,13 @@ export default function OfferCard({ offer, isMainScreen }: OfferCardProps): JSX.
 
   return (
     <article className={isMainScreen ? AdClasses.ArticleMainAdClass : AdClasses.ArticlePropertyAdClass} onMouseOver={()=> {
-      dispatch(setCurrentOfferId(id));
+      if (isMainScreen) {
+        dispatch(setCurrentOfferId(id));
+      }
+    }} onMouseLeave={() => {
+      if (isMainScreen) {
+        dispatch(setCurrentOfferId(null));
+      }
     }}
     >
       {

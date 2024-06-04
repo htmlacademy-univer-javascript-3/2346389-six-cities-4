@@ -1,5 +1,5 @@
 import Header from '../components/header/header';
-import CitiesList from '../components/cities-list/cities-list';
+import CitiesList from '../components/lists/cities-list';
 import Map from '../components/map/map';
 import OffersBoard from '../components/offers-board/offers-board';
 import { useAppSelector } from '../components/hooks';
@@ -7,7 +7,7 @@ import { getFilteredOffers } from '../store/offers-data/selectors';
 import { MainEmpty } from './main-empty-page';
 
 
-export default function MainScreen(): JSX.Element {
+export default function MainPage(): JSX.Element {
   const offers = useAppSelector(getFilteredOffers);
 
   return (
