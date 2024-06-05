@@ -2,21 +2,26 @@ import { useRef, useEffect } from 'react';
 import { Icon, Marker } from 'leaflet';
 import useMap from '../hooks/use-map';
 import { Offer } from '../../types/offers';
-import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT, MapClasses } from '../const/const';
+import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../const/const';
 import { useAppSelector } from '../hooks';
 import { getCurrentOfferId } from '../../store/page-events/selectors';
 import 'leaflet/dist/leaflet.css';
 
+const ICON_WIDTH = 40;
+const ICON_HEIGHT = 40;
+const ICON_ANCHOR_WIDTH = 20;
+const ICON_ANCHOR_HEIGHT = 40;
+
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
-  iconSize: [40, 40],
-  iconAnchor: [20, 40]
+  iconSize: [ICON_WIDTH, ICON_HEIGHT],
+  iconAnchor: [ICON_ANCHOR_WIDTH, ICON_ANCHOR_HEIGHT]
 });
 
 const currentCustomIcon = new Icon({
   iconUrl: URL_MARKER_CURRENT,
-  iconSize: [40, 40],
-  iconAnchor: [20, 40]
+  iconSize: [ICON_WIDTH, ICON_HEIGHT],
+  iconAnchor: [ICON_ANCHOR_WIDTH, ICON_ANCHOR_HEIGHT]
 });
 
 
@@ -63,6 +68,6 @@ export default function Map(props: MapProps): JSX.Element {
   }, [map, offers]);
 
   return (
-    <section className={isMainScreen ? MapClasses.SectionMainMapClass : MapClasses.SectionPropertyMapClass} ref={mapRef}></section>
+    <section className={isMainScreen ? ('cities__map map') : ('offer__map map')} ref={mapRef}></section>
   );
 }

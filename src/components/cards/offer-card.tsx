@@ -1,12 +1,17 @@
 import { Link } from 'react-router-dom';
 import { Offer } from '../../types/offers';
 import { getRatingStars } from '../const/util';
-import { AdClasses, AppRoute } from '../const/const';
+import { AppRoute } from '../const/const';
 import { fetchOfferInfoAction, setOfferFavoriteStatusAction } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { setCurrentOfferId } from '../../store/page-events/page-events';
 import browserHistory from '../../browser-history';
 import { getAuthorizationStatus } from '../../store/authorization-user-process/selectors';
+
+const FAV_BUTTON_WIDTH = 18;
+const FAV_BUTTON_HEIGHT = 19;
+const CARD_IMG_WIDTH = 260;
+const CARD_IMG_HEIGHT = 200;
 
 type OfferCardProps = {
   offer: Offer;
@@ -21,14 +26,13 @@ export default function OfferCard({ offer, isMainScreen }: OfferCardProps): JSX.
   const handleFavoriteButtonClick = () => {
     if(authorizationStatus !== 'AUTH') {
       browserHistory.push(AppRoute.Login);
-
       return;
     }
     dispatch(setOfferFavoriteStatusAction({id, favoriteStatus}));
   };
 
   return (
-    <article className={isMainScreen ? AdClasses.ArticleMainAdClass : AdClasses.ArticlePropertyAdClass} onMouseOver={()=> {
+    <article className={isMainScreen ? ('cities__card place-card') : ('near-places__card place-card')} onMouseOver={()=> {
       if (isMainScreen) {
         dispatch(setCurrentOfferId(id));
       }
@@ -44,12 +48,12 @@ export default function OfferCard({ offer, isMainScreen }: OfferCardProps): JSX.
           <span>{isPremium ? 'Premium' : ''}</span>
         </div>
       }
-      <div className={isMainScreen ? AdClasses.ImageWrapperMainAdClass : AdClasses.ImageWrapperPropertyAdClass}>
+      <div className={isMainScreen ? ('cities__image-wrapper place-card__image-wrapper') : ('near-places__image-wrapper place-card__image-wrapper')}>
         <Link to={`/offer/${offer.id}`} onClick={() => {
           dispatch(fetchOfferInfoAction(id.toString()));
         }}
         >
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place"/>
+          <img className="place-card__image" src={previewImage} width={CARD_IMG_WIDTH} height={CARD_IMG_HEIGHT} alt="Place"/>
         </Link>
       </div>
       <div className="place-card__info">
@@ -59,7 +63,7 @@ export default function OfferCard({ offer, isMainScreen }: OfferCardProps): JSX.
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button className={`place-card__bookmark-button ${isFavorite ? 'place-card__bookmark-button--active' : ''} button`} onClick={handleFavoriteButtonClick} type="button">
-            <svg className="place-card__bookmark-icon" width="18" height="19">
+            <svg className="place-card__bookmark-icon" width={FAV_BUTTON_WIDTH} height={FAV_BUTTON_HEIGHT}>
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
             <span className="visually-hidden">To bookmarks</span>

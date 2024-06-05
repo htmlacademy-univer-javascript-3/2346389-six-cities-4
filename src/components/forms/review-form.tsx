@@ -5,6 +5,8 @@ import { getCommentDataSendingStatus } from '../../store/user-review/selectors';
 
 const MIN_COMMENT_CHARACTERS = 50;
 const MAX_COMMENT_CHARACTERS = 300;
+const STAR_IMG_WIDTH = 37;
+const STAR_IMG_HEIGHT = 33;
 
 export default function ReviewForm({id}: {id: string}): JSX.Element {
   const [formData, setFormData] = useState({
@@ -56,7 +58,7 @@ export default function ReviewForm({id}: {id: string}): JSX.Element {
           disabled={isCommentDataSending} onChange={handleFieldChange}
         />
         <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
-          <svg className="form__star-image" width="37" height="33">
+          <svg className="form__star-image" width={STAR_IMG_WIDTH} height={STAR_IMG_HEIGHT}>
             <use xlinkHref="#icon-star"></use>
           </svg>
         </label>
@@ -65,7 +67,7 @@ export default function ReviewForm({id}: {id: string}): JSX.Element {
           disabled={isCommentDataSending} onChange={handleFieldChange}
         />
         <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
-          <svg className="form__star-image" width="37" height="33">
+          <svg className="form__star-image" width={STAR_IMG_WIDTH} height={STAR_IMG_HEIGHT}>
             <use xlinkHref="#icon-star"></use>
           </svg>
         </label>
@@ -74,7 +76,7 @@ export default function ReviewForm({id}: {id: string}): JSX.Element {
           disabled={isCommentDataSending} onChange={handleFieldChange}
         />
         <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
-          <svg className="form__star-image" width="37" height="33">
+          <svg className="form__star-image" width={STAR_IMG_WIDTH} height={STAR_IMG_HEIGHT}>
             <use xlinkHref="#icon-star"></use>
           </svg>
         </label>
@@ -83,7 +85,7 @@ export default function ReviewForm({id}: {id: string}): JSX.Element {
           disabled={isCommentDataSending} onChange={handleFieldChange}
         />
         <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
-          <svg className="form__star-image" width="37" height="33">
+          <svg className="form__star-image" width={STAR_IMG_WIDTH} height={STAR_IMG_HEIGHT}>
             <use xlinkHref="#icon-star"></use>
           </svg>
         </label>
@@ -92,7 +94,7 @@ export default function ReviewForm({id}: {id: string}): JSX.Element {
           disabled={isCommentDataSending} onChange={handleFieldChange}
         />
         <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
-          <svg className="form__star-image" width="37" height="33">
+          <svg className="form__star-image" width={STAR_IMG_WIDTH} height={STAR_IMG_HEIGHT}>
             <use xlinkHref="#icon-star"></use>
           </svg>
         </label>

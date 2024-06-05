@@ -11,19 +11,7 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export enum AdClasses {
-  ArticlePropertyAdClass = 'near-places__card place-card',
-  ArticleMainAdClass = 'cities__card place-card',
-  ImageWrapperPropertyAdClass = 'near-places__image-wrapper place-card__image-wrapper',
-  ImageWrapperMainAdClass = 'cities__image-wrapper place-card__image-wrapper',
-}
-
-export enum MapClasses {
-  SectionMainMapClass = 'cities__map map',
-  SectionPropertyMapClass = 'offer__map map',
-}
-
-export enum SlicesName {
+export enum NameSpace {
   Page = 'PAGE',
   User = 'USER',
   OffersData = 'OFFERS_DATA',
@@ -32,7 +20,7 @@ export enum SlicesName {
   UserReview = 'USER_REVIEW'
 }
 
-export enum CitiesName {
+export enum CityName {
   AMSTERDAM = 'Amsterdam',
   COLOGNE = 'Cologne',
   PARIS = 'Paris',

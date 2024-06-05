@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { FavoriteOffersData } from '../../types/state';
 import { fetchFavoriteOffersAction } from '../api-actions';
-import { SlicesName } from '../../components/const/const';
+import { NameSpace } from '../../components/const/const';
 
 const initialState: FavoriteOffersData = {
   isFavoriteOffersDataLoading: false,
@@ -9,7 +9,7 @@ const initialState: FavoriteOffersData = {
 };
 
 export const favoriteOffersData = createSlice({
-  name: SlicesName.FavoriteOffersData,
+  name: NameSpace.FavoriteOffersData,
   initialState,
   reducers: {},
   extraReducers(builder) {

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CurrentOfferData } from '../../types/state';
 import { fetchOfferInfoAction, sendOfferCommentAction } from '../api-actions';
-import { SlicesName } from '../../components/const/const';
+import { NameSpace } from '../../components/const/const';
 import { Offer } from '../../types/offers';
 import { ReviewType } from '../../types/reviews';
 
@@ -13,7 +13,7 @@ const initialState: CurrentOfferData = {
 };
 
 export const currentOfferData = createSlice({
-  name: SlicesName.CurrentOfferData,
+  name: NameSpace.CurrentOfferData,
   initialState,
   reducers: {},
   extraReducers(builder) {

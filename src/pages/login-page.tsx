@@ -1,5 +1,5 @@
 import Header from '../components/header/header';
-import {useRef, FormEvent} from 'react';
+import { useRef, FormEvent } from 'react';
 import { useAppDispatch, useAppSelector } from '../components/hooks';
 import { loginAction } from '../store/api-actions';
 import { AuthData } from '../types/auth-data';
@@ -12,10 +12,8 @@ const ERROR_MESSAGE = 'Пароль должен содержать как ми�
 export default function LoginPage(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
-
   const dispatch = useAppDispatch();
   const currentCity = useAppSelector(getCityName);
-
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));
   };
