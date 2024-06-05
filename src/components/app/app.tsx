@@ -25,17 +25,14 @@ export default function App(): JSX.Element {
   return (
     <HelmetProvider>
       <Routes>
-
         <Route
           path={AppRoute.Root}
           element={<MainPage/>}
         />
-
         <Route
           path={AppRoute.Login}
           element={<LoginPage/>}
         />
-
         <Route
           path={AppRoute.Favorites}
           element={
@@ -44,17 +41,14 @@ export default function App(): JSX.Element {
             </PrivateRoute>
           }
         />
-
         <Route
           path={AppRoute.Offer}
           element={<OfferPage/>}
         />
-
         <Route
           path="*"
           element={<NotFoundPage/>}
         />
-
       </Routes>
     </HelmetProvider>
   );

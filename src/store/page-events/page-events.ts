@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { PageEvents } from '../../types/state';
-import { SlicesName, SortingTypes } from '../../components/const/const';
+import { NameSpace, SortingTypes } from '../../components/const/const';
 
 const initialState: PageEvents = {
   sortType: SortingTypes.Popular,
@@ -8,7 +8,7 @@ const initialState: PageEvents = {
 };
 
 export const pageEvents = createSlice({
-  name: SlicesName.Page,
+  name: NameSpace.Page,
   initialState,
   reducers: {
     setSortType: (state, action: PayloadAction<string>) => {

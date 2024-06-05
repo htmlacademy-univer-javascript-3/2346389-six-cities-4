@@ -14,6 +14,9 @@ import { setOfferFavoriteStatusAction } from '../store/api-actions';
 import { AppRoute } from '../components/const/const';
 import { useState } from 'react';
 
+const BOOKMARK_ICON_WIDTH = 31;
+const BOOKMARK_ICON_HEIGHT = 33;
+
 export default function OfferScreen(): JSX.Element {
   const dispatch = useAppDispatch();
   const offer = useAppSelector(getOfferInfo);
@@ -22,14 +25,12 @@ export default function OfferScreen(): JSX.Element {
   const nearbyOffers = useAppSelector(getNearbyOffers);
   const [isFavoriteOffer, setFavoriteOffer] = useState<boolean | null>(offer?.isFavorite ? offer.isFavorite : null);
 
-
   if (offer && !isCurrenOfferDataLoading) {
     const {id, isPremium, description, goods, host, images, rating, maxAdults, price, title, type, bedrooms} = offer;
     const favoriteStatus = `${+!isFavoriteOffer}`;
     const handleFavoriteButtonClick = () => {
       if(authorizationStatus !== 'AUTH') {
         browserHistory.push(AppRoute.Login);
-
         return;
       }
       setFavoriteOffer((prevState) => !prevState);
@@ -67,7 +68,7 @@ export default function OfferScreen(): JSX.Element {
                 <div className="offer__name-wrapper">
                   <h1 className="offer__name">{title}</h1>
                   <button className={`offer__bookmark-button button ${isFavoriteOffer ? 'offer__bookmark-button--active' : ''}`} onClick={handleFavoriteButtonClick} type="button">
-                    <svg className="offer__bookmark-icon" width="31" height="33">
+                    <svg className="offer__bookmark-icon" width={BOOKMARK_ICON_WIDTH} height={BOOKMARK_ICON_HEIGHT}>
                       <use xlinkHref="#icon-bookmark"></use>
                     </svg>
                     <span className="visually-hidden">To bookmarks</span>

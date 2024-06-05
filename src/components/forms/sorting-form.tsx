@@ -3,6 +3,9 @@ import { useAppDispatch, useAppSelector } from '../hooks';
 import { setSortType } from '../../store/page-events/page-events';
 import { getSortType } from '../../store/page-events/selectors';
 
+const ARROW_WIDTH = 7;
+const ARROW_HEIGHT = 4;
+
 export default function SortingTypeForm(): JSX.Element {
   const [sortingOptionsOpened, setSortingOptionsOpened] = useState(false);
   const sortingType = useAppSelector(getSortType);
@@ -13,7 +16,7 @@ export default function SortingTypeForm(): JSX.Element {
       <span className="places__sorting-caption">Sort by </span>
       <span className="places__sorting-type" tabIndex={0} onClick={() => setSortingOptionsOpened(!sortingOptionsOpened)}>
         { sortingType}
-        <svg className="places__sorting-arrow" width="7" height="4">
+        <svg className="places__sorting-arrow" width={ARROW_WIDTH} height={ARROW_HEIGHT}>
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>

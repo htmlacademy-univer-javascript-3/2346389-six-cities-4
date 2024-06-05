@@ -1,17 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { OffersData } from '../../types/state';
-import { SlicesName, CitiesName } from '../../components/const/const';
+import { NameSpace, CityName } from '../../components/const/const';
 import { fetchOffersAction, setOfferFavoriteStatusAction } from '../api-actions';
 
 const initialState: OffersData = {
   isOffersDataLoading: false,
   offers: [],
   filteredOffers: [],
-  cityName: CitiesName.PARIS,
+  cityName: CityName.PARIS,
 };
 
 export const offersData = createSlice({
-  name: SlicesName.OffersData,
+  name: NameSpace.OffersData,
   initialState,
   reducers: {
     offerFilter: (state) => {

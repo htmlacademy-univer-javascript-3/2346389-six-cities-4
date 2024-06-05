@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { sendOfferCommentAction } from '../api-actions';
-import { SlicesName } from '../../components/const/const';
+import { NameSpace } from '../../components/const/const';
 import { UserReview } from '../../types/state';
 
 const initialState: UserReview = {
@@ -8,7 +8,7 @@ const initialState: UserReview = {
 };
 
 export const userReview = createSlice({
-  name: SlicesName.OffersData,
+  name: NameSpace.OffersData,
   initialState,
   reducers: {},
   extraReducers(builder) {

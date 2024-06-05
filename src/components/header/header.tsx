@@ -7,6 +7,9 @@ import { getUserEmail } from '../../services/user-email';
 import { getAuthorizationStatus, getUserInfo } from '../../store/authorization-user-process/selectors';
 import { getFavoriteOffers } from '../../store/favorite-offers-data/selectors';
 
+const LOGO_WIDTH = 81;
+const LOGO_HEIGHT = 41;
+
 function Header(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const favoriteOffers = useAppSelector(getFavoriteOffers);
@@ -24,7 +27,7 @@ function Header(): JSX.Element {
         <div className="header__wrapper">
           <div className="header__left">
             <Link className="header__logo-link header__logo-link--active" to="/">
-              <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
+              <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width={LOGO_WIDTH} height={LOGO_HEIGHT}/>
             </Link>
           </div>
           <nav className="header__nav">
@@ -71,6 +74,4 @@ function Header(): JSX.Element {
   );
 }
 
-const HeaderMemo = React.memo(Header);
-
-export default HeaderMemo;
+export default React.memo(Header);

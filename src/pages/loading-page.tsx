@@ -1,6 +1,8 @@
 import { useState, CSSProperties } from 'react';
 import PacmanLoader from 'react-spinners/PacmanLoader';
 
+const SPINNER_SIZE = 75;
+
 const override: CSSProperties = {
   display: 'block',
   margin: '0 auto',
@@ -17,7 +19,7 @@ function LoadingPage() {
         color={color}
         loading={loading}
         cssOverride={override}
-        size={75}
+        size={SPINNER_SIZE}
         aria-label="Loading Spinner"
         data-testid="loader"
       />
